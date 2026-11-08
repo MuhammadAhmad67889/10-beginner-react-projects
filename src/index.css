@@ -1,0 +1,623 @@
+/* Classic theme: ink on paper, one accent per project, generous spacing.
+   This mirrors the vanilla-JS version so the two repos feel like siblings. */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --accent: #2563eb;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --page: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+html {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--page);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+/* Every interactive control is at least 44px tall, so it is easy
+   to tap on a phone. */
+button {
+  min-height: 44px;
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The main action is filled in the project accent. */
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+button.primary:hover {
+  filter: brightness(1.08);
+}
+
+input[type='text'],
+input[type='number'],
+select {
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+}
+
+input[type='range'] {
+  accent-color: var(--accent);
+}
+
+input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent);
+}
+
+a {
+  color: var(--accent);
+}
+
+/* ---------- Layout ---------- */
+
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Landing page ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 3rem 1.5rem 2rem;
+  border-radius: var(--radius);
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.hero-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero h1,
+.hero p {
+  position: relative;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0.75rem auto 0;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  text-align: left;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.project-card h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.project-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.project-card .number {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.footer-note {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+/* ---------- Project pages ---------- */
+
+.project-page h1 {
+  margin: 0;
+}
+
+.project-page .card {
+  margin-top: 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.row + .row {
+  margin-top: 0.75rem;
+}
+
+.big-number {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  margin: 1rem 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.result-line {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.75rem 0;
+}
+
+.success {
+  color: #15803d;
+}
+
+/* ---------- Counter ---------- */
+
+.counter-controls {
+  justify-content: center;
+}
+
+/* ---------- Todo list ---------- */
+
+.todo-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.todo-form input {
+  flex: 1;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filters button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.todo-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.todo-list li span {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.todo-list li.done span {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.todo-list .delete {
+  min-height: 36px;
+  padding: 0 0.7rem;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.empty-message {
+  color: var(--muted);
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+}
+
+/* ---------- Calculator ---------- */
+
+.calc-display {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: right;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f8fafc;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.calc-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.calc-keys button {
+  font-size: 1.15rem;
+  min-height: 52px;
+}
+
+.calc-keys button.operator {
+  background: #fef3c7;
+  border-color: #fcd34d;
+}
+
+.calc-keys button.equals {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ---------- Stopwatch ---------- */
+
+.stopwatch-time {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 1rem 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.laps {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.laps li {
+  padding: 0.5rem 0.25rem;
+  border-bottom: 1px solid var(--line);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Quote generator ---------- */
+
+.quote-box {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.quote-box blockquote {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  margin: 0 0 0.75rem;
+}
+
+.quote-box .author {
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ---------- Color flipper ---------- */
+
+.color-swatch {
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0.6rem;
+}
+
+.color-code {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.15rem 0.75rem;
+  border-radius: 8px;
+}
+
+.cube-wrap {
+  height: 180px;
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f8fafc;
+  overflow: hidden;
+}
+
+.cube-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ---------- Tip calculator ---------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 140px;
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.results .stat {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.75rem;
+  background: #f8fafc;
+}
+
+.results .stat span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.results .stat strong {
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Password generator ---------- */
+
+.password-output {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.password-output input {
+  flex: 1;
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+
+/* ---------- Rock paper scissors ---------- */
+
+.choices {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.choices button {
+  font-size: 1.1rem;
+  padding: 0.75rem 1.25rem;
+}
+
+.score-line {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem;
+}
+
+.rps-result {
+  text-align: center;
+  margin: 0.5rem 0 0;
+}
+
+/* ---------- Quiz ---------- */
+
+.quiz-progress {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.quiz-question {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0.75rem 0 1rem;
+}
+
+.quiz-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quiz-answers button {
+  text-align: left;
+}
+
+.quiz-answers button.correct {
+  background: #dcfce7;
+  border-color: #16a34a;
+}
+
+.quiz-answers button.wrong {
+  background: #fee2e2;
+  border-color: #dc2626;
+}
+
+.quiz-answers button:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.trophy-wrap {
+  height: 220px;
+  margin: 0 auto 1rem;
+  max-width: 320px;
+  overflow: hidden;
+}
+
+.trophy-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.quiz-results {
+  text-align: center;
+}
+
+.quiz-results .big-number {
+  font-size: 3rem;
+  margin: 0.5rem 0;
+}
+
+/* ---------- Phones: the card sits near the top like an app screen ---------- */
+
+@media (max-width: 640px) {
+  .page {
+    padding-top: 0.75rem;
+  }
+
+  .project-page .card {
+    margin-top: 0.75rem;
+  }
+
+  .hero {
+    padding: 2rem 1rem 1.5rem;
+  }
+}
+
+/* ---------- Reduced motion: no animation anywhere ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .project-card:hover {
+    transform: none;
+  }
+}
