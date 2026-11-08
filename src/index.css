@@ -137,18 +137,6 @@ a {
   box-shadow: var(--shadow);
 }
 
-.hero-canvas {
-  position: absolute;
-  inset: 0;
-  opacity: 0.9;
-  pointer-events: none;
-}
-
-.hero-canvas canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
 .hero h1,
 .hero p {
   position: relative;

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { animationsEnabled, pageEnter, setupCardReveals } from './lib/animations'
-import ThreeHero from './components/ThreeHero'
 import Counter from './projects/Counter'
 import TodoList from './projects/TodoList'
 import Calculator from './projects/Calculator'
@@ -159,7 +158,6 @@ export default function App() {
   return (
     <div className="page">
       <header className="hero">
-        <ThreeHero />
         <h1>10 Beginner React Projects</h1>
         <p>
           The same ten small apps from my vanilla JavaScript repo, rebuilt in
