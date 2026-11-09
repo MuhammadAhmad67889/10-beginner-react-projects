@@ -57,6 +57,10 @@ export function setupCardReveals() {
       y: 40,
       duration: 0.6,
       ease: 'power2.out',
+      // Hand the card back to plain CSS once it has revealed, so the
+      // hover lift in the stylesheet works (an inline transform left
+      // behind would override it).
+      clearProps: 'opacity,transform',
       scrollTrigger: {
         trigger: card,
         start: 'top 88%',
