@@ -92,6 +92,7 @@ export default function App() {
   const projectRef = useRef(null)
 
   const active = PROJECTS.find((project) => project.id === page)
+  const activeIndex = PROJECTS.findIndex((project) => project.id === page)
 
   // ScrollTrigger reveals only exist on the landing page. When the
   // user comes back home, they are set up again from scratch.
@@ -145,6 +146,9 @@ export default function App() {
           &larr; All projects
         </a>
         <div ref={projectRef}>
+          <p className="eyebrow">
+            Project {String(activeIndex + 1).padStart(2, '0')} of 10
+          </p>
           <h1>{active.title}</h1>
           <p className="subtitle">{active.subtitle}</p>
           <div className="card">
@@ -158,8 +162,9 @@ export default function App() {
   return (
     <div className="page">
       <header className="hero">
+        <p className="eyebrow">React · Vite · GSAP · Three.js</p>
         <h1>10 Beginner React Projects</h1>
-        <p>
+        <p className="hero-sub">
           The same ten small apps from my vanilla JavaScript repo, rebuilt in
           React — with GSAP animations and a little Three.js on top. Pick one
           and play with it.
@@ -182,8 +187,16 @@ export default function App() {
       </main>
 
       <p className="footer-note">
-        Built with React, Vite, GSAP and Three.js. No router, no backend,
-        no data leaves your browser.
+        Built with React, Vite, GSAP and Three.js. No router, no backend, no
+        data leaves your browser.
+        <br />
+        <a href="https://github.com/MuhammadAhmad67889/10-beginner-react-projects">
+          View the code on GitHub
+        </a>
+        {' · '}
+        <a href="https://github.com/MuhammadAhmad67889/10-beginner-javascript-projects">
+          Vanilla JS version
+        </a>
       </p>
     </div>
   )
