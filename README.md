@@ -35,11 +35,17 @@ npm run build
 npm run preview
 ```
 
+To check the types only, without building:
+
+```bash
+npm run typecheck
+```
+
 ## What each library is used for
 
-- **React** — the components and state. Plain JavaScript and JSX, no TypeScript, no router: pages switch with a single `useState` in `App.jsx`, which also means it works on GitHub Pages with no extra setup.
+- **React + TypeScript** — the components and state, written in TypeScript (`.tsx` / `.ts`) with strict type checking. Plain types, no clever generics: a `Todo` is `{ id, text, done }`, a project is `{ id, title, subtitle, accent, Component }`. No router: pages switch with a single `useState` in `App.tsx`, which also means it works on GitHub Pages with no extra setup.
 - **Vite** — the build tool and dev server.
-- **GSAP + ScrollTrigger** — every project page fades and slides in on mount, buttons give a small press pop, and the landing page cards reveal as you scroll. `src/lib/animations.js` holds the helpers.
+- **GSAP + ScrollTrigger** — every project page fades and slides in on mount, buttons give a small press pop, and the landing page cards reveal as you scroll. `src/lib/animations.ts` holds the helpers.
 - **Three.js** — plain Three.js inside `useEffect`, no wrapper library: a colour-matching cube in the Color Flipper, and a gold star in a ring on the quiz results screen. Each scene cleans up after itself (animation frame cancelled, geometry and materials disposed, canvas removed) and renders nothing if the browser has no WebGL.
 
 All three animation systems respect `prefers-reduced-motion`: when it is on, the animations are skipped and a single still frame is shown instead.
@@ -48,18 +54,18 @@ All three animation systems respect `prefers-reduced-motion`: when it is on, the
 
 ```
 src/
-  App.jsx                 # page state, landing page, project switcher
+  App.tsx                 # page state, landing page, project switcher
   index.css               # classic theme (same look as the JS version)
   lib/
-    animations.js         # GSAP helpers + ScrollTrigger card reveals
-    threeSetup.js         # shared Three.js setup and cleanup
+    animations.ts         # GSAP helpers + ScrollTrigger card reveals
+    threeSetup.ts         # shared Three.js setup and cleanup
   components/
-    ColorCube.jsx         # colour-matching cube
-    Trophy3D.jsx          # quiz results trophy
+    ColorCube.tsx         # colour-matching cube
+    Trophy3D.tsx          # quiz results trophy
   projects/
-    Counter.jsx  TodoList.jsx  Calculator.jsx  Stopwatch.jsx
-    QuoteGenerator.jsx  ColorFlipper.jsx  TipCalculator.jsx
-    PasswordGenerator.jsx  RockPaperScissors.jsx  QuizApp.jsx
+    Counter.tsx  TodoList.tsx  Calculator.tsx  Stopwatch.tsx
+    QuoteGenerator.tsx  ColorFlipper.tsx  TipCalculator.tsx
+    PasswordGenerator.tsx  RockPaperScissors.tsx  QuizApp.tsx
 ```
 
 ## Deploying
